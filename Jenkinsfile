@@ -13,7 +13,7 @@ pipeline {
         stage('Download dependencies') { 
             steps { 
                 sh 'npm install'
-                sh 'yum install zip'
+                sh 'sudo yum install zip'
             }
         }
 
