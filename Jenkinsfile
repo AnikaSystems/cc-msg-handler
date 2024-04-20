@@ -18,6 +18,7 @@ pipeline {
 
         stage('Build') { 
             steps {
+                sh 'rm -r build'
                 sh 'mkdir build'
                 sh 'cp index.js build/index.js'
                 sh 'cp -r node_modules build/node_modules'
