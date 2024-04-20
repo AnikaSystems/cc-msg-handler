@@ -13,6 +13,7 @@ pipeline {
         stage('Download dependencies') { 
             steps { 
                 sh 'npm install'
+                sh 'sudo apt-get install zip'
             }
         }
 
