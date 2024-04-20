@@ -22,7 +22,6 @@ pipeline {
                 sh 'mkdir build'
                 sh 'cp index.js build/index.js'
                 sh 'cp -r node_modules build/node_modules'
-                sh 'zip -r artifacts.zip build'
             }
         }
 
@@ -30,7 +29,7 @@ pipeline {
             steps {
                 withAWS(region:'us-east-1',credentials:'aws-mo') {
                     s3Delete(bucket:'cc-message-handler', path:'/')
-                    s3Upload(bucket:"cc-message-handler", workingDir:'/', includePathPattern:'artifacts.zip');
+                    s3Upload(bucket:"cc-message-handler", workingDir:'build/', includePathPattern:'**/*');
                 }
             }
         }
