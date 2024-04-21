@@ -3,10 +3,10 @@ const { Client } = require('pg');
 
 //instantiates a client to connect to the database, connection settings are passed in
 const client = new Client({
-    user: 'pgadmin',
-    host: 'ls-2281523b413668ef133bdd91dc81ae9de89790e7.ctx0qx7bmopv.us-east-1.rds.amazonaws.com',
+    user: process.env.db_user,
+    host: process.env.db_host,
     database: 'case',
-    password: 'ccpgadmin',
+    password: process.env.db_password,
     port: 5432,
     ssl: {
         rejectUnauthorized: false
