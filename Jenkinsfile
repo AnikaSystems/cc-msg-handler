@@ -31,7 +31,7 @@ pipeline {
             steps {
                 withAWS(region:'us-east-1',credentials:'aws-mo') {
                     s3Delete(bucket:'cc-message-handler', path:'/')
-                    s3Upload(bucket:"cc-message-handler", workingDir:'/', includePathPattern:'cc-message-handler.zip');
+                    s3Upload(bucket:"cc-message-handler", workingDir:'/', includePathPattern:'/cc-message-handler.zip');
                 }
             }
         }
