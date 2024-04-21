@@ -22,6 +22,7 @@ pipeline {
                 sh 'mkdir build'
                 sh 'cp index.js build/index.js'
                 sh 'cp -r node_modules build/node_modules'
+                zip zipFile: 'cc-message-handler.zip', archive: false, dir: 'build'
             }
         }
 
