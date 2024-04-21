@@ -18,10 +18,13 @@ pipeline {
 
         stage('Build') { 
             steps {
-                sh 'rm -r build'
+                sh 'rm -rf build'
+                sh 'rm -rf package'
                 sh 'mkdir build'
+                sh 'mkdir package'
                 sh 'cp index.js build/index.js'
                 sh 'cp -r node_modules build/node_modules'
+                zip zipFile: 'package/cc-message-handler.zip', archive: false, dir: 'build'
             }
         }
 
@@ -29,7 +32,7 @@ pipeline {
             steps {
                 withAWS(region:'us-east-1',credentials:'aws-mo') {
                     s3Delete(bucket:'cc-message-handler', path:'/')
-                    s3Upload(bucket:"cc-message-handler", workingDir:'build/', includePathPattern:'**/*');
+                    s3Upload(bucket:"cc-message-handler", workingDir:'package/', includePathPattern:'**/*');
                 }
             }
         }
