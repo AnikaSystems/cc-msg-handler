@@ -18,6 +18,7 @@ pipeline {
 
         stage('Build') { 
             steps {
+                sh 'rm -r cc-message-handler.zip'
                 sh 'rm -r build'
                 sh 'mkdir build'
                 sh 'cp index.js build/index.js'
